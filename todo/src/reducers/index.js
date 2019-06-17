@@ -1,10 +1,12 @@
 const initialState = {
   todos: [
     {
+      id: 1,
       value: 'walk the dog',
       completed: false
     },
     {
+      id: 2,
       value: 'cook dinner',
       completed: false
     }
