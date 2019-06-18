@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
+import { addTodo } from '../actions';
+import { connect } from 'react-redux';
 
 class TodoForm extends Component {
   constructor() {
     super();
     this.state = {
-      value: ''
+      value: '',
+      completed: false
     };
   }
+
+  addTodo = e => {
+    e.preventDefault();
+    this.props.addTodo(this.state);
+    this.setState({ value: '' });
+  };
 
   onInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -33,4 +42,13 @@ class TodoForm extends Component {
   }
 }
 
-export default TodoForm;
+const mapStateToProps = state => {
+  return {
+    todosOnProps: state.todos
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { addTodo }
+)(TodoForm);
