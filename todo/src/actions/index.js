@@ -1,10 +1,18 @@
 export const ADD_TODO = 'ADD_TODO';
+export const TOGGLE_COMPLETE = 'TOGGLE_COMPLETE';
 
 export const addTodo = todo => {
-  console.log('action running...');
-
   return {
     type: ADD_TODO,
     payload: todo
+  };
+};
+
+export const toggleComplete = id => {
+  console.log('toggle action running: ', id);
+
+  return {
+    type: TOGGLE_COMPLETE,
+    payload: id
   };
 };

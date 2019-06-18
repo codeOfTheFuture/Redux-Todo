@@ -6,6 +6,7 @@ class TodoForm extends Component {
   constructor() {
     super();
     this.state = {
+      id: 3,
       value: '',
       completed: false
     };
@@ -14,7 +15,13 @@ class TodoForm extends Component {
   addTodo = e => {
     e.preventDefault();
     this.props.addTodo(this.state);
-    this.setState({ value: '' });
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        value: '',
+        id: prevState.id + 1
+      };
+    });
   };
 
   onInputChange = e => {

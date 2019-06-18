@@ -1,9 +1,8 @@
 import React from 'react';
 import Todo from './Todo';
 import { connect } from 'react-redux';
-import { addTodo } from '../actions';
 
-function Todos(props) {
+const Todos = props => {
   return (
     <div>
       {props.todosOnProps.map(todo => (
@@ -11,7 +10,7 @@ function Todos(props) {
       ))}
     </div>
   );
-}
+};
 
 const mapStateToProps = state => {
   return {
