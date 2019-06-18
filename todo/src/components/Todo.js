@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { toggleComplete } from '../actions';
 
+import '../App.css';
+
 const Todo = props => {
   const toggleComplete = (e, id) => {
     e.preventDefault();
@@ -10,16 +12,11 @@ const Todo = props => {
   };
 
   return (
-    <div onClick={e => toggleComplete(e, props.todo.id)}>
-      <h3
-        style={
-          props.todo.completed
-            ? { textDecoration: 'line-through', backgroundColor: 'lightgrey' }
-            : { textDecoration: 'none' }
-        }
-      >
-        {props.todo.value}
-      </h3>
+    <div
+      onClick={e => toggleComplete(e, props.todo.id)}
+      className={props.todo.completed ? 'todo todo-completed' : 'todo'}
+    >
+      <h3 className="todo-name">{props.todo.value}</h3>
     </div>
   );
 };

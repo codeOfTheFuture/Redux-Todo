@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { addTodo } from '../actions';
+import { addTodo, clearCompleted } from '../actions';
 import { connect } from 'react-redux';
+
+import '../App.css';
 
 class TodoForm extends Component {
   constructor() {
@@ -24,6 +26,11 @@ class TodoForm extends Component {
     });
   };
 
+  clearCompleted = e => {
+    e.preventDefault();
+    this.props.clearCompleted();
+  };
+
   onInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -31,10 +38,11 @@ class TodoForm extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.addTodo}>
-          <div>
-            <label>Add Todo</label>
+        <form onSubmit={this.addTodo} className="form">
+          <div className="form-group">
+            <label className="form-label">Add Todo</label>
             <input
+              className="form-input"
               type="text"
               placeholder="Add Todo"
               name="value"
@@ -42,7 +50,15 @@ class TodoForm extends Component {
               onChange={this.onInputChange}
             />
           </div>
-          <button>Add Todo</button>
+          <div>
+            <button className="btn add-todo">Add Todo</button>
+            <button
+              className="btn clear-completed"
+              onClick={e => this.clearCompleted(e)}
+            >
+              Clear Completed
+            </button>
+          </div>
         </form>
       </div>
     );
@@ -57,5 +73,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { addTodo }
+  { addTodo, clearCompleted }
 )(TodoForm);
